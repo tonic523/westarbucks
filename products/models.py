@@ -17,15 +17,15 @@ class Category(models.Model):
 
 class Product(models.Model):
     category_id = models.ForeignKey('Category', on_delete=models.CASCADE)
-    korean_name = models.CharField(max_length=100, blank=True)
-    english_name = models.CharField(max_length=100, blank=True)
-    description = models.TextField(blank=True)
-    nutrition_id = models.ForeignKey('Nutritions', on_delete=models.CASCADE, null=True)
+    korean_name = models.CharField(max_length=100)
+    english_name = models.CharField(max_length=100)
+    description = models.TextField()
+    nutrition_id = models.ForeignKey('Nutrition', on_delete=models.CASCADE, null=True)
 
     class Meta:
         db_table = 'products'
 
-class Nutritions(models.Model):
+class Nutrition(models.Model):
     one_serving_kcal = models.DecimalField(max_digits = 6, decimal_places = 2)
     sodium_mg = models.DecimalField(max_digits = 6, decimal_places = 2)
     saturated_fat_g = models.DecimalField(max_digits = 6, decimal_places = 2)
@@ -51,7 +51,7 @@ class Allergy(models.Model):
     class Meta:
         db_table = 'allergies'
 
-class Allergy_products(models.Model):
+class Allergies_products(models.Model):
     allergy_id = models.ForeignKey('Allergy', on_delete=models.CASCADE)
     product_id = models.ForeignKey('Product', on_delete=models.CASCADE)
 
